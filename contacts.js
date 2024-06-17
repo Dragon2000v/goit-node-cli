@@ -35,11 +35,36 @@ async function removeContact(contactId) {
     if (index === -1) {
       return null;
     }
-    const [removeContact] = contacts.slice(index, 1);
+    const [removedContact] = contacts.splice(index, 1);
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
-    return removeContact;
+    return removedContact;
   } catch (error) {
     console.error('Error removing contact:', error.message);
     return null;
   }
 }
+
+async function addContact(name, email, phone) {
+  try {
+    const contacts = await listContacts();
+    const newContact = {
+      id: (contacts.length > 0
+        ? contacts[contacts.length - 1].id + 1
+        : 1
+      ).toString(),
+      name,
+      email,
+      phone,
+    };
+    contacts.push(newContact);
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  } catch (error) {
+    console.error('Error adding contact:', error.message);
+    return null;
+  }
+}
+
+// listContacts();
+//getContactById('rsKkOQUi80UsgVPCcLZZW1');
+// addContact('Ден Хомяк', 'winter_dragon@ukr.net', '0999421705');
+removeContact('rsKkOQUi80UsgVPCcLZZW1');
