@@ -7,7 +7,6 @@ async function listContacts() {
   try {
     const data = await fs.readFile(contactsPath, 'utf-8');
     const parseData = JSON.parse(data);
-    //console.log(parseData);
     return parseData;
   } catch (error) {
     console.error('Error reading contacts:', error.message);
@@ -18,15 +17,12 @@ async function listContacts() {
 async function getContactById(contactId) {
   try {
     const contacts = await listContacts();
-    //console.log(contacts.filter(el => el.id === contactId));
     return contacts.filter(el => el.id === contactId) || null;
   } catch (error) {
     console.error('Error reading contacts:', error.message);
     return null;
   }
 }
-
-//getContactById('rsKkOQUi80UsgVPCcLZZW');
 
 async function removeContact(contactId) {
   try {
@@ -63,11 +59,6 @@ async function addContact(name, email, phone) {
     return null;
   }
 }
-
-// listContacts();
-//getContactById('rsKkOQUi80UsgVPCcLZZW1');
-// addContact('Ден Хомяк', 'winter_dragon@ukr.net', '0999421705');
-removeContact('rsKkOQUi80UsgVPCcLZZW1');
 
 module.exports = {
   listContacts,
