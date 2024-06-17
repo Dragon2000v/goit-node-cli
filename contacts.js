@@ -68,3 +68,10 @@ async function addContact(name, email, phone) {
 //getContactById('rsKkOQUi80UsgVPCcLZZW1');
 // addContact('Ден Хомяк', 'winter_dragon@ukr.net', '0999421705');
 removeContact('rsKkOQUi80UsgVPCcLZZW1');
+
+module.exports = {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+};
