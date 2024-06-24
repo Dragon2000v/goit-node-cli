@@ -4,7 +4,7 @@ const {
   getContactById,
   removeContact,
   addContact,
-} = require('./contacts');
+} = require('./src/scripts/contacts.js');
 
 program
   .option('-a, --action <type>', 'choose action')
@@ -37,7 +37,7 @@ async function invokeAction({ action, id, name, email, phone }) {
     case 'add':
       if (!name || !email || !phone) {
         console.log(
-          "Будь ласка, вкажіть ім'я, email та телефон для додавання контакту."
+          "Будь ласка, вкажіть ім'я, email та телефон для додавання контакту.",
         );
         return;
       }
